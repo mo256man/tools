@@ -1,4 +1,5 @@
 
+import "./FontStyle.css";
 import React, { useMemo, useState } from "react";
 import { Copy, Check, Sparkles } from "lucide-react";
 
@@ -144,7 +145,7 @@ const STYLES = [
 
 const convert = (text, map) => [...text].map((char) => map[char] ?? char).join("");
 
-export default function UnicodeDecorativeTextConverter() {
+export default function UnicodeDecorativeTextConverter({ setView }) {
   const [input, setInput] = useState("");
   const [source, setSource] = useState("");
   const [copiedId, setCopiedId] = useState(null);
@@ -163,77 +164,66 @@ export default function UnicodeDecorativeTextConverter() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-100 px-4 py-10 text-slate-900">
-      <div className="mx-auto max-w-5xl">
-        <header className="mb-7">
-          <div className="mb-2 flex items-center gap-2 text-indigo-700">
-            <Sparkles className="h-5 w-5" />
-            <span className="text-sm font-semibold tracking-wide">UNICODE TEXT CONVERTER</span>
-          </div>
-          <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">Unicode装飾文字コンバーター</h1>
-          <p className="mt-3 text-sm leading-6 text-slate-600 sm:text-base">
-            英字と数字の変換可能な部分だけを装飾文字に置き換え、全スタイルを一覧表示します。
-          </p>
-        </header>
+    <div className="app">
+      <button type="button" className="back-button" onClick={() => setView('title')}>
+        ← 戻る
+      </button>
 
-        <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
-          <label htmlFor="source-text" className="mb-2 block text-sm font-semibold text-slate-700">
-            変換するテキスト
-          </label>
-          <div className="flex flex-col gap-3 sm:flex-row">
-            <input
-              id="source-text"
-              value={input}
-              onChange={(event) => setInput(event.target.value)}
-              onKeyDown={(event) => {
-                if (event.key === "Enter") handleConvert();
-              }}
-              placeholder="例: ABC hello 123 日本語"
-              className="min-w-0 flex-1 rounded-xl border border-slate-300 bg-white px-4 py-3 text-base outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100"
-            />
-            <button
-              type="button"
-              onClick={handleConvert}
-              className="rounded-xl bg-indigo-600 px-6 py-3 font-semibold text-white shadow-sm transition hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-200 active:translate-y-px"
-            >
-              変換
-            </button>
-          </div>
-        </section>
+      <h1>Unicode装飾文字コンバーター</h1>
+      <p className="hint">英字と数字の変換可能な部分だけを装飾文字に置き換え、全スタイルを一覧表示します。</p>
 
-        {source ? (
-          <section className="mt-6 grid gap-4 md:grid-cols-2">
-            {outputs.map((output) => (
-              <article key={output.id} className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-                <div className="mb-3 flex items-center justify-between gap-3">
-                  <h2 className="text-sm font-semibold text-slate-600">{output.name}</h2>
-                  <button
-                    type="button"
-                    onClick={() => handleCopy(output.id, output.value)}
-                    className="inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-sm font-medium text-indigo-700 transition hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-indigo-300"
-                    aria-label={`${output.name}をコピー`}
-                  >
-                    {copiedId === output.id ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-                    {copiedId === output.id ? "コピー済み" : "コピー"}
-                  </button>
-                </div>
-                <textarea
-                  readOnly
-                  value={output.value}
-                  rows={3}
-                  onFocus={(event) => event.currentTarget.select()}
-                  className="w-full resize-y rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-lg leading-7 text-slate-900 outline-none focus:border-indigo-400 focus:ring-4 focus:ring-indigo-100"
-                  aria-label={`${output.name}の変換結果`}
-                />
-              </article>
-            ))}
-          </section>
-        ) : (
-          <div className="mt-6 rounded-2xl border border-dashed border-slate-300 bg-white/60 px-6 py-12 text-center text-slate-500">
-            テキストを入力して「変換」を押すと、すべての変換結果がここに表示されます。
-          </div>
-        )}
+      <div className="controls">
+        <input
+          id="source-text"
+          value={input}
+          onChange={(event) => setInput(event.target.value)}
+          onKeyDown={(event) => {
+            if (event.key === "Enter") handleConvert();
+          }}
+          placeholder="例: ABC hello 123 日本語"
+          className="input-field"
+        />
+        <button
+          type="button"
+          onClick={handleConvert}
+          className="button"
+        >
+          変換
+        </button>
       </div>
-    </main>
+
+      {source ? (
+        <div className="results">
+          {outputs.map((output) => (
+            <div key={output.id} className="result-item">
+              <div className="result-header">
+                <h2>{output.name}</h2>
+                <button
+                  type="button"
+                  onClick={() => handleCopy(output.id, output.value)}
+                  className="copy-button"
+                  aria-label={`${output.name}をコピー`}
+                >
+                  {copiedId === output.id ? <Check className="icon" /> : <Copy className="icon" />}
+                  {copiedId === output.id ? "コピー済み" : "コピー"}
+                </button>
+              </div>
+              <textarea
+                readOnly
+                value={output.value}
+                rows={1}
+                onFocus={(event) => event.currentTarget.select()}
+                className="result-textarea"
+                aria-label={`${output.name}の変換結果`}
+              />
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="placeholder-box">
+          テキストを入力して「変換」を押すと、すべての変換結果がここに表示されます。
+        </div>
+      )}
+    </div>
   );
 }

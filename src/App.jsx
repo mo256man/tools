@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import Title from './Title'
 import FontStyle from './FontStyle'
+import GifMaker from './GifMaker.jsx'
 
 export default function App() {
 
@@ -11,6 +12,7 @@ export default function App() {
     <>
       {view === "title" && <Title setView={setView} />}
       {view === "fontStyle" && <FontStyle setView={setView} />}
+      {view === "gifMaker" && <GifMaker setView={setView} />}
     </>
   )
 }

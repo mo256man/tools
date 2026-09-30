@@ -1,0 +1,181 @@
+.app {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  font-family: system-ui, "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif;
+  color: #f2f2f2;
+  background-color: #1d1f24;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.back-button {
+  align-self: flex-start;
+  padding: 6px 12px;
+  font-size: 13px;
+  color: #9fd7ff;
+  background: transparent;
+  border: 1px solid #555;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.back-button:hover {
+  background: #2a2d34;
+  border-color: #4ea3ff;
+}
+
+.app h1 {
+  font-size: 20px;
+  margin: 0;
+  color: inherit;
+}
+
+.hint {
+  margin: 0;
+  font-size: 13px;
+  color: #9fd7ff;
+}
+
+.controls {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+}
+
+.input-field {
+  flex: 1;
+  min-width: 200px;
+  padding: 8px 12px;
+  border: 1px solid #555;
+  border-radius: 4px;
+  background: #2a2d34;
+  color: #f2f2f2;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.input-field:focus {
+  border-color: #4ea3ff;
+}
+
+.input-field::placeholder {
+  color: #888;
+}
+
+.button {
+  padding: 6px 16px;
+  font-size: 13px;
+  color: inherit;
+  background: #2a2d34;
+  border: 1px solid #555;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.button:hover:not(:disabled) {
+  background: #363a43;
+  border-color: #4ea3ff;
+}
+
+.button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.results {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  width: 100%;
+  max-width: 900px;
+  margin-top: 12px;
+}
+
+.result-item {
+  border: 1px solid #555;
+  border-radius: 8px;
+  background: #16181c;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.result-header h2 {
+  font-size: 14px;
+  margin: 0;
+  color: #f2f2f2;
+}
+
+.copy-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  font-size: 12px;
+  color: #9fd7ff;
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.copy-button:hover {
+  background-color: rgba(78, 163, 255, 0.1);
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+}
+
+.result-textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #555;
+  border-radius: 4px;
+  background: #2a2d34;
+  color: #f2f2f2;
+  font-family: monospace;
+  font-size: 16px;
+  resize: none;
+  outline: none;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.result-textarea:focus {
+  border-color: #4ea3ff;
+}
+
+.placeholder-box {
+  width: 100%;
+  max-width: 900px;
+  margin-top: 24px;
+  padding: 24px;
+  text-align: center;
+  border: 2px dashed #555;
+  border-radius: 8px;
+  background: #16181c;
+  color: #9fd7ff;
+  font-size: 14px;
+}

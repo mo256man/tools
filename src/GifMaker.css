@@ -1,0 +1,128 @@
+.app {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  font-family: system-ui, "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif;
+  color: #f2f2f2;
+  background-color: #1d1f24;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.back-button {
+  align-self: flex-start;
+  padding: 6px 12px;
+  font-size: 13px;
+  color: #9fd7ff;
+  background: transparent;
+  border: 1px solid #555;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.back-button:hover {
+  background: #2a2d34;
+  border-color: #4ea3ff;
+}
+
+.app h1 {
+  font-size: 20px;
+  margin: 0;
+  color: inherit;
+}
+
+.controls {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.controls label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+}
+
+.controls input {
+  width: 80px;
+  padding: 4px 6px;
+  border: 1px solid #555;
+  border-radius: 4px;
+  background: #2a2d34;
+  color: inherit;
+}
+
+.button {
+  padding: 6px 16px;
+  font-size: 13px;
+  color: inherit;
+  background: #2a2d34;
+  border: 1px solid #555;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.button:hover:not(:disabled) {
+  background: #363a43;
+  border-color: #4ea3ff;
+}
+
+.button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.hint {
+  margin: 0;
+  font-size: 13px;
+  color: #9fd7ff;
+}
+
+.panels {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.dropZone,
+.result {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed #555;
+  border-radius: 8px;
+  background: #16181c;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.dropZone.dragOver {
+  border-color: #4ea3ff;
+  background: #1b2430;
+}
+
+.canvas {
+  display: block;
+  cursor: crosshair;
+}
+
+.gif {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.placeholder {
+  position: absolute;
+  font-size: 14px;
+  color: #777;
+  pointer-events: none;
+}
